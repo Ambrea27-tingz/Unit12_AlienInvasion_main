@@ -10,9 +10,9 @@ class Settings:
         self.FPS = 60
         self.bg_file = Path.cwd() / 'Assets' / 'images' / 'Starbasesnow.png'
 
-        self.ship_file = Path.cwd() / 'Assets' / 'images' / 'ship.bmp'
-        self.ship_w = 60
-        self.ship_h = 60
+        self.ship_file = Path.cwd() / 'Assets' / 'images' / 'ship.png'
+        self.ship_w = 70
+        self.ship_h = 95
         self.ship_speed = 5
         self.starting_ship_count = 3
 
