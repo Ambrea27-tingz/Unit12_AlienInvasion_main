@@ -34,8 +34,8 @@ class AlienFleet:
         if fleet_h % 2 == 0:
          fleet_h -= 1
 
-        x_offset = (screen_w - (fleet_w * 2 * alien_w)) // 2
-        y_offset = ((screen_h // 2) - (fleet_h * 2 * alien_h)) // 2
+        x_offset = (screen_w - fleet_w * alien_w * 1.2) // 2
+        y_offset = (screen_h // 2 - fleet_h * alien_h * 1.2) // 2
 
         center_col = fleet_w // 2
         center_row = fleet_h // 2
@@ -43,9 +43,9 @@ class AlienFleet:
         for row in range(fleet_h):
             for col in range(fleet_w):
                 if row == center_row or col == center_col:
-                    x = x_offset + 2 * col * alien_w
-                    y = y_offset + 2 * row * alien_h
-                    self._create_alien(x, y)
+                    x = x_offset + 1.2 * col * alien_w
+                    y = y_offset + 1.2 * row * alien_h
+                    self._create_alien(int(x), int(y))
 
     def _create_cross_fleet(self, alien_w, alien_h, fleet_w, fleet_h, x_offset, y_offset):
         """Create a cross-shaped fleet of aliens."""
