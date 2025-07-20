@@ -18,25 +18,38 @@ class AlienFleet:
         self.create_fleet()
 
     def create_fleet(self):
-        """Creates a fleet of aliens."""
+        """Creates a cross-shaped fleet of aliens."""
         alien_w = self.settings.alien_w
         alien_h = self.settings.alien_h
         screen_w = self.settings.screen_w
         screen_h = self.settings.screen_h
 
-        # Calculate number of aliens that can fit
+        # Calculate how many aliens fit horizontally and vertically
         fleet_w = screen_w // (alien_w * 2)
         fleet_h = (screen_h // 2) // (alien_h * 2)
 
-        # Center offset to align the fleet in a formated grid
-        x_offset = (screen_w - (fleet_w * alien_w)) // 2
-        y_offset = (screen_h // 2 - (fleet_h * alien_h)) // 2
+        # Ensure an odd number so we have a center row/col
+        if fleet_w % 2 == 0:
+         fleet_w -= 1
+        if fleet_h % 2 == 0:
+         fleet_h -= 1
 
-        self._create_cross_fleet(alien_w, alien_h, fleet_w, fleet_h, x_offset, y_offset)    
+        x_offset = (screen_w - (fleet_w * 2 * alien_w)) // 2
+        y_offset = ((screen_h // 2) - (fleet_h * 2 * alien_h)) // 2
+
+        center_col = fleet_w // 2
+        center_row = fleet_h // 2
+
+        for row in range(fleet_h):
+            for col in range(fleet_w):
+                if row == center_row or col == center_col:
+                    x = x_offset + 2 * col * alien_w
+                    y = y_offset + 2 * row * alien_h
+                    self._create_alien(x, y)
 
     def _create_cross_fleet(self, alien_w, alien_h, fleet_w, fleet_h, x_offset, y_offset):
         """Create a cross-shaped fleet of aliens."""
-        center_col = fleet_w // 2 #floor division to get the center column
+        center_col = fleet_w // 2
         center_row = fleet_h // 2
 
         for row in range(fleet_h):
