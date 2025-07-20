@@ -21,8 +21,8 @@ class Alien(Sprite):
              )
         
         self.rect = self.image.get_rect()
-        self.rect.x = x 
-        self.rect.y = y
+        self.rect.x = self.rect.x = int(x) 
+        self.rect.y = self.rect.y = int(y)
         
         self.y = float(self.rect.y)
         self.x = float(self.rect.x)
@@ -32,8 +32,8 @@ class Alien(Sprite):
         temp_speed = self.settings.fleet_speed
                 
         self.x += temp_speed * self.fleet.fleet_direction
-        self.rect.x = self.x
-        self.rect.y = self.y
+        self.rect.x = self.rect.x = int(self.y)
+        self.rect.y = self.rect.y = int(self.y)
 
     def check_edges(self):
         """Return True if alien is at the edge of the screen."""
