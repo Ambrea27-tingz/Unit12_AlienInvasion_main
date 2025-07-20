@@ -73,7 +73,7 @@ class AlienInvasion:
 
 
     def _check_collisions(self):
-        #check for collisions for the ship 
+        """Check for collisions between the ship, aliens, and projectiles."""
         if self.ship.check_collisions(self.alien_fleet.fleet):
             self._check_game_status()
             #subtract one life if possible
@@ -93,7 +93,10 @@ class AlienInvasion:
         
         
     def _check_game_status(self):
-        
+
+        """Check the game status and update lives or end the game.
+        If the ship collides with an alien, reduce lives or end game."""
+
         if self.game_stats.ships_left > 0:
             self.game_stats.ships_left -= 1
             self._reset_level()
@@ -107,13 +110,17 @@ class AlienInvasion:
       
         
     def _reset_level(self):
+
+        """Reset the level by clearing the ship's arsenal 
+        and recreating the alien fleet."""
+
         self.ship.arsenal.arsenal.empty()
         self.alien_fleet.fleet.empty()
         self.alien_fleet.create_fleet()
 
 
     def _update_screen(self):
-        """Update images on the screen, and flip to the new screen."""
+        """Update images on the screen, and flips to the new screen."""
         self.screen.blit(self.bg, (0, 0)) 
         self.ship.draw()  
         self.alien_fleet.draw()
@@ -132,12 +139,14 @@ class AlienInvasion:
                 self._check_keyup_events(event)
     
     def _check_keyup_events(self, event):
+        """Respond to key releases."""
         if event.key == pygame.K_RIGHT:
             self.ship.moving_right = False
         elif event.key == pygame.K_LEFT:
             self.ship.moving_left = False
     
     def _check_keydown_events(self, event):
+        """Respond to key presses."""
         if event.key == pygame.K_RIGHT:
             self.ship.moving_right = True
         elif event.key == pygame.K_LEFT:

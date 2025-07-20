@@ -7,6 +7,8 @@ if TYPE_CHECKING:
 
 class Alien(Sprite):
     def __init__(self, fleet: 'AlienFleet', x: float, y: float):
+        """Initialize the alien and set its starting position."""
+        # Call the parent class (Sprite) constructor from pygame
         super().__init__()
         self.fleet = fleet
         self.screen = fleet.game.screen
@@ -26,16 +28,19 @@ class Alien(Sprite):
         self.x = float(self.rect.x)
 
     def update(self):
-         temp_speed = self.settings.fleet_speed
+        """Update the alien's position."""
+        temp_speed = self.settings.fleet_speed
                 
-         self.x += temp_speed * self.fleet.fleet_direction
-         self.rect.x = self.x
-         self.rect.y = self.y
+        self.x += temp_speed * self.fleet.fleet_direction
+        self.rect.x = self.x
+        self.rect.y = self.y
 
     def check_edges(self):
+        """Return True if alien is at the edge of the screen."""
         return (self.rect.right >= self.boundaries.right or
                 self.rect.left <= self.boundaries.left)
 
     def draw_alien(self):
+        """Draw the alien at its current position."""
         self.screen.blit(self.image, self.rect)
         
