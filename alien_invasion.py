@@ -1,5 +1,5 @@
 """ 
-Lab13_awilliams2_2.py / CSCI 1511
+CSCI 1511
 
 Ambrea Williams
 
